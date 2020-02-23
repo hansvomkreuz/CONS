@@ -25,7 +25,7 @@ list.files(path = codeDir,pattern = ".R$") %>%
         })
 
 # Read files --------------------------------------------------------------
-eyeDataInitial <- CONS(dataDir = "./CONS/data/data", imageDir = "./CONS/images")
+eyeDataInitial <- CONS(dataDir = "./data/all_data", imageDir = "./images")
 
 # Create merged files -----------------------------------------------------
 mergePatientDetails(eyeDataInitial = "./data/all_data/eyeDataInitial.rds")
