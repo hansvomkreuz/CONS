@@ -1,23 +1,12 @@
-CONS <- function(codeDir = "./R", dataDir = "./data", imageDir = "./images"){
+CONS <- function(dataDir = "./data", imageDir = "./images"){
     
     # Creating and setting directories
-    source(file.path(codeDir,"createDirectory.R"))
-    createDirectory(dir = codeDir)
-    cat("R codes will be sourced from",codeDir,"\n\n")
     createDirectory(dir = dataDir)
     cat("Data will be sourced from",dataDir,"\n\n")
     createDirectory(dir = imageDir)
     cat("Images will be saved in",imageDir,"\n\n")
     
-    # Read R codes
-    rCodes <- list.files(path = codeDir,pattern = ".R$") %>% 
-        setdiff(c("CONS.R","createDirectory.R","runMe.R"))
-    walk(
-        rCodes,
-        function(x){
-            fileName <- file.path(codeDir,x)
-            source(fileName)
-        })
+
     
     # List all CONS files
     consFiles <- list.files(path = dataDir,pattern = ".xls$")

@@ -14,7 +14,22 @@ rm(list = ls())
 library(tidyverse)
 library(tictoc)
 library(pryr)
-source("./CONS/R/CONS.R")
+
+# Load all R codes --------------------------------------------------------
+codeDir <- "./CONS/R"
+list.files(path = codeDir,pattern = ".R$") %>% 
+    walk(
+        function(x){
+            fileName <- file.path(codeDir,x)
+            source(fileName)
+        })
 
 # Read files --------------------------------------------------------------
-eyeDataInitial <- CONS(codeDir = "./CONS/R", dataDir = "./CONS/data/data", imageDir = "./CONS/images")
+eyeDataInitial <- CONS(dataDir = "./CONS/data/data", imageDir = "./CONS/images")
+
+# Create merged files -----------------------------------------------------
+mergePatientDetails(eyeDataInitial = "./data/all_data/eyeDataInitial.rds")
+mergeScanData(eyeDataInitial = "./data/all_data/eyeDataInitial.rds")
+mergeGclMatrix(eyeDataInitial = "./data/all_data/eyeDataInitial.rds")
+mergeCleanGclArray(eyeDataInitial = "./data/all_data/eyeDataInitial.rds")
+
