@@ -1,8 +1,8 @@
 # FUNCTION: Reading a CONS file -------------------------------------------
 readConsFile <- function(path,fileName){
     data <- read_table2(file = file.path(path,fileName),col_names = F,skip = 2)
-    data <- data[-which(rowSums(is.na(data)) == ncol(data)),c(1:512)]
-    names(data) <- c(paste0('VL',seq.int(512)))
+    data <- data[-which(rowSums(is.na(data)) == ncol(data)),]
+    names(data) <- c(paste0('VL',c(1:ncol(data))))
     data <- rbind(data,data[23,])
     data <- cbind(LineLayer = 1:23,HL = 1,data) %>% 
         mutate(

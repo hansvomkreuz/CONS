@@ -10,7 +10,6 @@ renderEyeImage <- function(consData,imageDirectory = "./image"){
   data <- eyeLayerThickness(consData,firstLayer = "ILM", lastLayer = "BM") %>% 
     select(-c(1:5))
   heatmap <- heatmap(as.matrix(data), Colv = NA, Rowv = NA, scale = "column", main = imageLabel)
-  # heatmap(as.matrix(data), Colv = NA, Rowv = NA, scale = "column", main = imageLabel)
   dev.copy(jpeg,filename = imageFileName);
   dev.off ()
 }

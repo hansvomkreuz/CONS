@@ -6,8 +6,6 @@ CONS <- function(dataDir = "./data", imageDir = "./images"){
     createDirectory(dir = imageDir)
     cat("Images will be saved in",imageDir,"\n\n")
     
-
-    
     # List all CONS files
     consFiles <- list.files(path = dataDir,pattern = ".xls$")
     cat("Processing files:\n")
@@ -27,7 +25,7 @@ CONS <- function(dataDir = "./data", imageDir = "./images"){
                     messageString <- paste("Completed processing",x,"file")
                     tic(messageString)
                     patient <- patientDetails(path = dataDir,fileName = x)
-                    cons <- readConsFile(path = dataDir,fileName = x) %>% 
+                    cons <- readConsFile(path = dataDir,fileName = x) %>%
                         tidyConsData()
                     center <- fovealCentre(consData = cons)
                     gclMatrix <- gclThickness(consData = cons)

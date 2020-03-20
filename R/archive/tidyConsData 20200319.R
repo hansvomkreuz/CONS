@@ -7,20 +7,13 @@ tidyConsData <- function(consData){
     if('HL' %in% columnNames){
         layers <- consData %>% 
             pull(HL) %>% 
-            max
-        if(layers <= 30){
-            consData <- consData %>% 
-                filter(HL <= 25)
-        }
-        if(between(layers,49,50)){
+            unique %>% 
+            length
+        if(layers == 49){
             consData <- consData %>% 
                 filter(HL%%2 == 1)
         }
-        if(between(layers,73,75)){
-            consData <- consData %>% 
-                filter(HL%%3 == 1)
-        }
-        if(between(layers,97,100)){
+        if(layers == 97){
             consData <- consData %>% 
                 filter(HL%%4 == 1)
         }

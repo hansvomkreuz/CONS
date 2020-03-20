@@ -1,10 +1,10 @@
 # FUNCTION: Convert matrix to array ---------------------------------------
 spiralMatrixToArray <- function(gclData, eyeCenter){
     tic("Completed matrix to array transformation")
-    dataInfo <- gclData[,1:5]
+    dataInfo <- gclData[1,1:5]
     PatientNumber <- dataInfo$PatientNumber
     VisitNumber <- dataInfo$VisitNumber
-    EyeSide <- ifelse(dataInfo$EyeSide == "od",1,2)
+    IsRightEye <- ifelse(dataInfo$EyeSide == "od",1,0)
     gclData <- gclData[,-c(1:5)] %>%
         as.matrix
     dims <- dim(gclData)
@@ -104,7 +104,7 @@ spiralMatrixToArray <- function(gclData, eyeCenter){
             currentR <- currentR + elements
         }
     }    
-    arrayData <- c(PatientNumber,VisitNumber,EyeSide,arrayData)
+    arrayData <- c(PatientNumber,VisitNumber,IsRightEye,arrayData)
     toc()
     return(arrayData)
 }

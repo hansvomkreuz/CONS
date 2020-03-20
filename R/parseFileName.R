@@ -3,11 +3,11 @@ parseFileName <- function(fileName){
     fileName2 <- str_replace(string = fileName,pattern = ".xls",replacement = "")
     strings <- str_split(string = fileName2,pattern = "_")[[1]]
     data <- data.frame(
-        FileName = fileName
-        ,FileName2 = fileName2
-        ,PatientNumber = strings[1]
-        ,VisitNumber = strings[2]
-        ,EyeSide = strings[3])
+        FileName = as.character(fileName)
+        ,FileName2 = as.character(fileName2)
+        ,PatientNumber = as.integer(strings[1])
+        ,VisitNumber = as.integer(strings[2])
+        ,EyeSide = as.character(strings[3]))
     return(data)
 }
 

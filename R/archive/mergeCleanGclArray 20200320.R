@@ -23,18 +23,20 @@ mergeCleanGclArray <- function(eyeDataInitial){
     for (i in seq.int(iters)) {
         pathI <- paste0(path,"_",i,".rds")
         tictoc::tic(paste0(i," of ",iters," - merged and fixed to same lengths of GCL array into a data.frame. Saved in ",pathI))
-        indexStart <- (elementsPerIter*(i-1))+1
-        indexEnd <- ifelse((elementsPerIter * i) < listLength, (elementsPerIter * i), listLength)
+        indexStart <- elementsPerIter*(i-1)+1
+        indexEnd <- ifelse(elementsPerIter * i < listLength, elementsPerIter * i, listLength)
         matrixRows <- indexEnd - indexStart + 1
         mergedGclArray <- readRDS(eyeDataInitial)[indexStart:indexEnd] %>%
-            purrr::map_dfc(
+            purrr::map(
                 function(x){
                     gclArray <- x$gclArray
                     paddedGclArray <- c(gclArray,rep(NA,maxArrayLength - length(gclArray)))
                     return(paddedGclArray)
-                })
-        mergedGclArray <- data.frame(t(mergedGclArray))
-        colnames(mergedGclArray) <- c("studyId","visit","eye",paste0("C",c(1:(maxArrayLength-3))))
+                }) %>% 
+            purrr::flatten_dbl() %>%
+            matrix(nrow = matrixRows,ncol = maxArrayLength) %>%
+            as.data.frame()
+        names(mergedGclArray) <- c("studyId","visit","eye",paste0("C",c(1:(maxArrayLength-3))))
         saveRDS(object = mergedGclArray,file = pathI)
         gc()
         tictoc::toc()
