@@ -27,7 +27,7 @@ CONS <- function(dataDir = "./data", imageDir = "./images"){
                     patient <- patientDetails(path = dataDir,fileName = x)
                     cons <- readConsFile(path = dataDir,fileName = x) %>%
                         tidyConsData()
-                    center <- fovealCentre(consData = cons)
+                    center <- fovealCentre(consData = cons)[1,]
                     gclMatrix <- gclThickness(consData = cons)
                     gclArray <- spiralMatrixToArray(gclData = gclMatrix, eyeCenter = center)
                     renderEyeImage(consData = cons,imageDirectory = imageDir)

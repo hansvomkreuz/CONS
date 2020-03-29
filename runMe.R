@@ -25,11 +25,11 @@ list.files(path = codeDir,pattern = ".R$") %>%
         })
 
 # Read files --------------------------------------------------------------
-eyeDataInitial <- CONS(dataDir = "./data", imageDir = "./images")
+eyeDataInitial <- CONS(dataDir = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data", imageDir = "./images")
 
 # Create merged files -----------------------------------------------------
-mergePatientDetails(eyeDataInitial = "./data/eyeDataInitial.rds")
-mergeScanData(eyeDataInitial = "./data/eyeDataInitial.rds")
-mergeGclMatrix(eyeDataInitial = "./data/eyeDataInitial.rds")
-mergeCleanGclArray(eyeDataInitial = "./data/eyeDataInitial.rds")
+mergePatientDetails(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+mergeScanData(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+mergeGclMatrix(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+mergeCleanGclArray(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
 
