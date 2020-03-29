@@ -1,5 +1,7 @@
 # FUNCTION: Index generator based on longest array ------------------------
 indexGenerator <- function(eyeDataInitial){
+    cat("Generating index data...\n")
+    tictoc::tic("Index data generated")
     initialData <- readRDS(eyeDataInitial)
     arrayLength <- map_dbl(initialData
                             ,function(x){
@@ -46,6 +48,7 @@ indexGenerator <- function(eyeDataInitial){
             currentR <- currentR + elements
         }
     }
+    tictoc::toc()
     return(indexMatrix)
 }
     

@@ -33,6 +33,6 @@ mergeScanData(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS 
 mergeGclMatrix(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
 mergeCleanGclArray(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
 
-
 # Create index data -------------------------------------------------------
 indexData <- indexGenerator(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+write.csv(indexData,file = "./indexData.csv")
