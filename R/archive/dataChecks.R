@@ -46,6 +46,18 @@ mem_used()
 scan <- eyeDataInitial[[7]]$scanData
 gcl <- eyeDataInitial[[7]]$gclMatrix
 
+# Longest array less first 3 values ---------------------------------------
+array.length <- map_dbl(eyeDataInitial
+        ,function(x){
+            x <- length(x$gclArray) - 3
+            x
+        })
+summary(array.length)
+sqrt(array.length)
 
+
+sqrt(263169)
+sqrt(299209)
+sqrt(1046529)
 
 
