@@ -35,8 +35,6 @@ mergeCleanGclArray(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - 
 
 # Create index data -------------------------------------------------------
 indexData <- indexGenerator(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
-
-which(indexData == ",4", arr.ind = TRUE)
 write.csv(indexData,file = "./indexData.csv")
 
 # Example: Select GCL array given index -----------------------------------
@@ -59,4 +57,8 @@ arrayIndex <- c(
     ,6	,15	,32	,57	,90	,131	,180	,237	,302	,375	,456	,545	,642	,747	,860    
 )
 eyeSection <- mergedCleanedGclArray_13[,c(1:3,arrayIndex)]
+
+# Example: Use of indexTrim function --------------------------------------
+indexTrimmed <- indexTrim(indexData = indexData,row = 25,col = 512)
+write.csv(indexTrimmed,file = "./indexTrimmed.csv")
 
