@@ -25,7 +25,7 @@ list.files(path = codeDir,pattern = ".R$") %>%
         })
 
 # Read files --------------------------------------------------------------
-eyeDataInitial <- CONS(dataDir = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE", imageDir = "./images",regionalEyeCenter = TRUE)
+eyeDataInitial <- CONS(dataDir = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data", imageDir = "./images",regionalEyeCenter = TRUE)
 
 # Create merged files -----------------------------------------------------
 mergePatientDetails(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
@@ -35,6 +35,8 @@ mergeCleanGclArray(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - 
 
 # Create index data -------------------------------------------------------
 indexData <- indexGenerator(eyeDataInitial = "/Users/GiusseppeMac/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+
+which(indexData == ",4", arr.ind = TRUE)
 write.csv(indexData,file = "./indexData.csv")
 
 # Example: Select GCL array given index -----------------------------------
