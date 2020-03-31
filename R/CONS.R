@@ -1,4 +1,4 @@
-CONS <- rfunction(dataDir = "./data", imageDir = "./images",regionalEyeCenter = TRUE){
+CONS <- function(dataDir = "./data", imageDir = "./images",regionalEyeCenter = TRUE){
     
     # Creating and setting directories
     createDirectory(dir = dataDir)
