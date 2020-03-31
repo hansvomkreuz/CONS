@@ -1,7 +1,7 @@
 # FUNCTION: Display heatmap of retinal thickness --------------------------
 # Render eye image of retinal thickness to manually check foveal centre
-renderEyeImage <- function(consData,imageDirectory = "./image",regionalEyeCenter = TRUE){
-  center <- fovealCentre(consData = cons,regionalEyeCenter = regionalEyeCenter)[1,]
+renderEyeImage <- function(consData,imageDirectory = "./image"){
+  center <- fovealCentre(consData)
   consFileName <- consData %>% 
     pull(FileName2) %>% 
     unique()

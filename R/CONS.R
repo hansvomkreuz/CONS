@@ -1,4 +1,4 @@
-CONS <- function(dataDir = "./data", imageDir = "./images",regionalEyeCenter = TRUE){
+CONS <- rfunction(dataDir = "./data", imageDir = "./images",regionalEyeCenter = TRUE){
     
     # Creating and setting directories
     createDirectory(dir = dataDir)
@@ -27,16 +27,12 @@ CONS <- function(dataDir = "./data", imageDir = "./images",regionalEyeCenter = T
                     patient <- patientDetails(path = dataDir,fileName = x)
                     cons <- readConsFile(path = dataDir,fileName = x) %>%
                         tidyConsData()
-                    if(regionalEyeCenter){
-                        center <- fovealCentreRegional(consData = cons)[1,]
-                    } else {
-                        center <- fovealCentre(consData = cons)[1,]
-                    }
+                    center <- fovealCentre(consData = cons,regionalEyeCenter = regionalEyeCenter)[1,]
                     gclMatrix <- gclThickness(consData = cons)
                     gclArray <- spiralMatrixToArray(gclData = gclMatrix, eyeCenter = center)
-                    renderEyeImage(consData = cons,imageDirectory = imageDir)
+                    renderEyeImage(consData = cons,imageDirectory = imageDir,regionalEyeCenter = regionalEyeCenter)
                     # data <- list(patientInfo = patient,scanData = cons,gclMatrix = gclMatrix)
-                    data <- list(patientInfo = patient,scanData = cons,gclMatrix = gclMatrix, gclArray = gclArray)
+                    data <- list(patientInfo = patient,scanData = cons,eyeCenter = center,gclMatrix = gclMatrix, gclArray = gclArray)
                     toc()
                     cat("\n")
                     return(data)
