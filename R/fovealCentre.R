@@ -13,10 +13,12 @@ fovealCentre <- function(consData,regionalEyeCenter = TRUE){
     } else {
         data <- consData
     }
-    data <- eyeLayerThickness(consData,firstLayer = "ILM",lastLayer = "BM") %>% 
+    data <- eyeLayerThickness(data,firstLayer = "ILM",lastLayer = "BM") %>% 
         select(-c(1:5))
     coordinate <- which(data == min(data, na.rm = TRUE), arr.ind = TRUE)
-    coordinate[,1] <- coordinate[,1] + 5
-    coordinate[,2] <- coordinate[,2] + 156
+    if(regionalEyeCenter){
+        coordinate[,1] <- coordinate[,1] + 5
+        coordinate[,2] <- coordinate[,2] + 156
+    }
     return(coordinate)
 }
