@@ -18,6 +18,7 @@ list.files(path = codeDir,pattern = ".R$") %>%
 mem_used()
 eyeDataInitial <- readRDS("~/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
 mergedPatientDetails <- readRDS("~/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/mergedPatientDetails.rds")
+mergedCleanedGclArray_13 <- readRDS("~/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/mergedCleanedGclArray_13.rds")
 mem_used()
 
 # First values (VL1) of all arrays ----------------------------------------

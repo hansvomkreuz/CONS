@@ -9,7 +9,7 @@ indexGenerator <- function(eyeDataInitial){
                                 x
                             })
     totalCells <- max(arrayLength)
-    arrayData <- seq.int(totalCells)
+    arrayData <- seq.int(totalCells) + 3
     sideLength <- sqrt(totalCells)
     centerPoint <- round((sideLength + 1)/2)
     currentR <- centerPoint
@@ -19,7 +19,7 @@ indexGenerator <- function(eyeDataInitial){
     for(i in seq.int(totalSides)){
         elements <- (i + 1) %/% 2
         if (i == 1){
-            indexMatrix[currentR,currentC] <- 1
+            indexMatrix[currentR,currentC] <- arrayData[1]
             arrayData <- arrayData[-1]
             currentC <- currentC + elements
         } else if (i %% 4 == 1){
@@ -48,6 +48,11 @@ indexGenerator <- function(eyeDataInitial){
             currentR <- currentR + elements
         }
     }
+    indexMatrix <- map_dfc(
+        indexMatrix,function(x){
+            x <- paste0(",",x)
+            x
+    })
     tictoc::toc()
     return(indexMatrix)
 }
