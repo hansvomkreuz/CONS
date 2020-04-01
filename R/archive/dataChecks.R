@@ -56,9 +56,16 @@ array.length <- map_dbl(eyeDataInitial
 summary(array.length)
 sqrt(array.length)
 
-
-sqrt(263169)
-sqrt(299209)
-sqrt(1046529)
+# C1 anomalies ------------------------------------------------------------
+eyeDataInitial <- readRDS("~/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+anomaliesC1 <- map_dfr(eyeDataInitial
+                       ,function(x){
+                           x <- x$gclArray[1:4]
+                           x <- data.frame(PatientNumber = x[1],VisitNumber = x[2],EyeSide = ifelse(x[3]==1,"od","os"),C1 = x[4]) %>% 
+                               mutate(fileName = paste(PatientNumber,VisitNumber,EyeSide,sep = "_"))
+                           return(x)
+                       }) %>%
+    filter(C1 < 0 | is.na(C1))
+    
 
 
