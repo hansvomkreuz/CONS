@@ -67,5 +67,22 @@ anomaliesC1 <- map_dfr(eyeDataInitial
                        }) %>%
     filter(C1 < 0 | is.na(C1))
     
+# Eye centers -------------------------------------------------------------
+eyeDataInitial <- readRDS("~/Downloads/Joos Meyer - CONS - DONT DELETE/all_data/eyeDataInitial.rds")
+eyeCenterRegional <- map_dfr(eyeDataInitial
+                      ,function(x){
+                          fileName <- as.character(x$patientInfo$FileName)
+                          centers <- x$eyeCenter
+                          centerRow <- as.integer(centers[1])
+                          centerColumn <- as.integer(centers[2])
+                          result <- data.frame(fileName,centerRow,centerColumn,centerType = "Regional")
+                      })
 
-
+eyeCenterAll <- map_dfr(eyeDataInitial
+                      ,function(x){
+                          fileName <- as.character(x$patientInfo$FileName)
+                          centers <- fovealCentre(consData = x$scanData,regionalEyeCenter = FALSE)
+                          centerRow <- as.integer(centers[1])
+                          centerColumn <- as.integer(centers[2])
+                          result <- data.frame(fileName,centerRow,centerColumn,centerType = "All")
+                      })
